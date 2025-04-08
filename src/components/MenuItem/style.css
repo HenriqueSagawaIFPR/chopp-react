@@ -1,0 +1,129 @@
+.menu-item {
+    background-color: #fffbeb;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #fde68a;
+    transform: translateY(0);
+    transition: all 0.5s ease;
+    opacity: 0;
+  }
+  
+  .menu-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-item.appear {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .menu-item-image-container {
+    position: relative;
+    height: 12rem;
+    overflow: hidden;
+  }
+  
+  .menu-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+  
+  .menu-item:hover .menu-item-image {
+    transform: scale(1.1);
+  }
+  
+  .menu-item-abv {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #92400e;
+    color: #fffbeb;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-bottom-left-radius: 0.5rem;
+  }
+  
+  .menu-item-content {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    height: 12rem;
+  }
+  
+  .menu-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+  
+  .menu-item-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #78350f;
+    margin: 0;
+  }
+  
+  .menu-item-price {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #92400e;
+    margin: 0;
+    white-space: nowrap;
+  }
+  
+  .menu-item-description {
+    font-size: 0.875rem;
+    color: #92400e;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    flex-grow: 1;
+  }
+  
+  .menu-item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.75rem;
+    border-top: 1px solid #fde68a;
+    margin-top: auto;
+  }
+  
+  .menu-item-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #92400e;
+    font-weight: 600;
+  }
+  
+  .menu-item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    justify-content: flex-end;
+  }
+  
+  .menu-item-tag {
+    font-size: 0.75rem;
+    background-color: #fef3c7;
+    color: #92400e;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid #fcd34d;
+  }
+  
+  @media (max-width: 640px) {
+    .menu-item-image-container {
+      height: 10rem;
+    }
+    
+    .menu-item-content {
+      height: auto;
+    }
+  }

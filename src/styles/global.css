@@ -1,0 +1,68 @@
+@keyframes bubble {
+    0% { 
+      transform: translateY(0) scale(0); 
+      opacity: 0; 
+    }
+    50% { 
+      opacity: 0.8; 
+    }
+    100% { 
+      transform: translateY(-100vh) scale(1); 
+      opacity: 0; 
+    }
+  }
+  
+  .bubbles-left::before,
+  .bubbles-right::before {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: bubble 8s infinite ease-in;
+  }
+  
+  .bubbles-left::before { 
+    left: 10%; 
+    animation-delay: 0s; 
+  }
+  
+  .bubbles-right::before { 
+    right: 10%; 
+    animation-delay: 4s; 
+  }
+  
+  .bubbles-left::after,
+  .bubbles-right::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: bubble 12s infinite ease-in;
+  }
+  
+  .bubbles-left::after { 
+    left: 20%; 
+    animation-delay: 2s; 
+  }
+  
+  .bubbles-right::after { 
+    right: 20%; 
+    animation-delay: 6s; 
+  }
+  
+  .menu-item-anim {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .menu-item-anim.appear {
+    opacity: 1;
+    transform: translateY(0);
+  }
