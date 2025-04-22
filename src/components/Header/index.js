@@ -7,7 +7,7 @@ const Header = () => {
     <header className="header">
       <div className="header-content">
         <div className="header-top">
-          <h1 className="header-title">Choperia Artesanal</h1>
+          <h1 className="header-title">Chopp Benteo's</h1>
         </div>
         <p className="header-subtitle">Sabores autênticos, produção artesanal, experiência única</p>
         <div className="header-info">
