@@ -8,7 +8,7 @@ const Navbar = ({ cartItemCount, onCartClick }) => {
         <nav className="navbar">
             <div className="navbar-container">
                 <a href="/" className="navbar-logo">
-                    Chopp React
+                    Chopp Benteo's
                 </a>
                 <div className="navbar-links">
                     <a href="/" className="navbar-link">
