@@ -4,6 +4,7 @@ import MenuList from './components/MenuList/index';
 import Footer from './components/Footer/index';
 import Cart from './components/Cart/index';
 import { menuItems } from './data/menu-item';
+import Navbar from './components/Navbar/index';
 
 import './styles/global.css';
 import './styles/animations.css';
@@ -19,15 +20,15 @@ function App() {
 
     setCartItems(prevItems => {
       const existingItem = prevItems.find(cartItem => cartItem.id === itemId);
-      
+
       if (existingItem) {
-        return prevItems.map(cartItem => 
-          cartItem.id === itemId 
+        return prevItems.map(cartItem =>
+          cartItem.id === itemId
             ? { ...cartItem, quantity: cartItem.quantity + quantity }
             : cartItem
         );
       }
-      
+
       return [...prevItems, { ...item, quantity }];
     });
   };
@@ -38,8 +39,8 @@ function App() {
       return;
     }
 
-    setCartItems(prevItems => 
-      prevItems.map(item => 
+    setCartItems(prevItems =>
+      prevItems.map(item =>
         item.id === itemId ? { ...item, quantity: newQuantity } : item
       )
     );
@@ -53,18 +54,18 @@ function App() {
 
   return (
     <div className="app">
-      <Header 
-        cartItemCount={cartItemCount} 
-        onCartClick={() => setIsCartOpen(true)} 
+      <Navbar cartItemCount={cartItemCount}
+        onCartClick={() => setIsCartOpen(true)} />
+      <Header
       />
       <main className="main-content">
-        <MenuList 
-          items={menuItems} 
+        <MenuList
+          items={menuItems}
           onAddToCart={handleAddToCart}
         />
       </main>
       <Footer />
-      <Cart 
+      <Cart
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
         cartItems={cartItems}

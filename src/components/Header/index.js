@@ -2,13 +2,12 @@ import React from 'react';
 import CartButton from '../CartButton';
 import './style.css';
 
-const Header = ({ cartItemCount, onCartClick }) => {
+const Header = () => {
   return (
     <header className="header">
       <div className="header-content">
         <div className="header-top">
           <h1 className="header-title">Choperia Artesanal</h1>
-          <CartButton itemCount={cartItemCount} onClick={onCartClick} />
         </div>
         <p className="header-subtitle">Sabores autênticos, produção artesanal, experiência única</p>
         <div className="header-info">
