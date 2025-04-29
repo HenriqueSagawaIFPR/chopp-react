@@ -3,6 +3,11 @@ import Header from './components/Header/index';
 import MenuList from './components/MenuList/index';
 import Footer from './components/Footer/index';
 import Cart from './components/Cart/index';
+import Statistics from './components/Statistics/index';
+import About from './components/About/index';
+import Events from './components/Events/index';
+import Contact from './components/Contact';
+import WhatsAppButton from './components/WhatsAppButton';
 import { menuItems } from './data/menu-item';
 import Navbar from './components/Navbar/index';
 
@@ -63,6 +68,10 @@ function App() {
           items={menuItems}
           onAddToCart={handleAddToCart}
         />
+        <Statistics />
+        <About />
+        <Events />
+        <Contact />
       </main>
       <Footer />
       <Cart
@@ -72,6 +81,7 @@ function App() {
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
       />
+      <WhatsAppButton />
     </div>
   );
 }
