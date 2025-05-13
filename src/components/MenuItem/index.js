@@ -9,6 +9,7 @@ const MenuItem = ({ id, name, description, price, image, category, tags, abv, on
     setIsAdding(true);
     onAddToCart(id, quantity);
     
+    // Reset after animation
     setTimeout(() => {
       setIsAdding(false);
       setQuantity(1);
@@ -22,9 +23,6 @@ const MenuItem = ({ id, name, description, price, image, category, tags, abv, on
           src={image} 
           alt={name} 
           className="menu-item-image"
-          loading="lazy"
-          width="300"
-          height="200"
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = '/images/placeholder-beer.jpg';

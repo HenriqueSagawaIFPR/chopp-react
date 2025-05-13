@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import Header from './components/Header/index';
 import MenuList from './components/MenuList/index';
 import Footer from './components/Footer/index';
 import Cart from './components/Cart/index';
 import Statistics from './components/Statistics/index';
-import About from './components/About/index';
-import Events from './components/Events/index';
-import Contact from './components/Contact';
+import Navbar from './components/Navbar/index';
 import WhatsAppButton from './components/WhatsAppButton';
 import { menuItems } from './data/menu-item';
-import Navbar from './components/Navbar/index';
-
 import './styles/global.css';
 import './styles/animations.css';
 import './App.css';
+
+// Lazy loading dos componentes não críticos
+const About = lazy(() => import('./components/About/index'));
+const Events = lazy(() => import('./components/Events/index'));
+const Contact = lazy(() => import('./components/Contact'));
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -57,21 +58,34 @@ function App() {
 
   const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
+  // Componente de loading para o Suspense
+  const LoadingFallback = () => (
+    <div className="loading-container">
+      <div className="loading-spinner"></div>
+      <p>Carregando...</p>
+    </div>
+  );
+
   return (
     <div className="app">
       <Navbar cartItemCount={cartItemCount}
         onCartClick={() => setIsCartOpen(true)} />
-      <Header
-      />
+      <Header />
       <main className="main-content">
         <MenuList
           items={menuItems}
           onAddToCart={handleAddToCart}
         />
         <Statistics />
-        <About />
-        <Events />
-        <Contact />
+        <Suspense fallback={<LoadingFallback />}>
+          <About />
+        </Suspense>
+        <Suspense fallback={<LoadingFallback />}>
+          <Events />
+        </Suspense>
+        <Suspense fallback={<LoadingFallback />}>
+          <Contact />
+        </Suspense>
       </main>
       <Footer />
       <Cart

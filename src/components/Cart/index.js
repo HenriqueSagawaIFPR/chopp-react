@@ -42,7 +42,7 @@ const Cart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem }) =>
               {cartItems.map(item => (
                 <div key={item.id} className="cart-item">
                   <div className="cart-item-image">
-                    <img src={item.image} alt={item.name} loading='lazy' />
+                    <img src={item.image} alt={item.name} />
                   </div>
                   <div className="cart-item-details">
                     <h3 className="cart-item-name">{item.name}</h3>
