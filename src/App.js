@@ -2,10 +2,7 @@ import React, { useState, Suspense, lazy } from 'react';
 import Header from './components/Header/index';
 import MenuList from './components/MenuList/index';
 import Footer from './components/Footer/index';
-import Cart from './components/Cart/index';
-import Statistics from './components/Statistics/index';
 import Navbar from './components/Navbar/index';
-import WhatsAppButton from './components/WhatsAppButton';
 import { menuItems } from './data/menu-item';
 import './styles/global.css';
 import './styles/animations.css';
@@ -15,6 +12,9 @@ import './App.css';
 const About = lazy(() => import('./components/About/index'));
 const Events = lazy(() => import('./components/Events/index'));
 const Contact = lazy(() => import('./components/Contact'));
+const Statistics = lazy(() => import('./components/Statistics/index'));
+const Cart = lazy(() => import('./components/Cart/index'));
+const WhatsAppButton = lazy(() => import('./components/WhatsAppButton'));
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -76,7 +76,9 @@ function App() {
           items={menuItems}
           onAddToCart={handleAddToCart}
         />
-        <Statistics />
+        <Suspense fallback={<LoadingFallback />}>
+          <Statistics />
+        </Suspense>
         <Suspense fallback={<LoadingFallback />}>
           <About />
         </Suspense>
@@ -88,14 +90,18 @@ function App() {
         </Suspense>
       </main>
       <Footer />
-      <Cart
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        cartItems={cartItems}
-        onUpdateQuantity={handleUpdateQuantity}
-        onRemoveItem={handleRemoveItem}
-      />
-      <WhatsAppButton />
+      <Suspense fallback={<LoadingFallback />}>
+        <Cart
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          cartItems={cartItems}
+          onUpdateQuantity={handleUpdateQuantity}
+          onRemoveItem={handleRemoveItem}
+        />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <WhatsAppButton />
+      </Suspense>
     </div>
   );
 }

@@ -27,6 +27,7 @@ const MenuItem = ({ id, name, description, price, image, category, tags, abv, on
             e.target.onerror = null;
             e.target.src = '/images/placeholder-beer.jpg';
           }}
+          loading='lazy'
         />
         <div className="menu-item-abv">
           {abv}

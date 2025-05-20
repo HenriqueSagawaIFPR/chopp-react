@@ -17,10 +17,7 @@
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
   }
   
-  .menu-item.appear {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  
   
   .menu-item-image-container {
     position: relative;
