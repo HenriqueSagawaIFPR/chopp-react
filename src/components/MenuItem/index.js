@@ -23,6 +23,14 @@ const MenuItem = ({ id, name, description, price, image, category, tags, abv, on
           src={image} 
           alt={`${name} - Chopp artesanal ${category}`} 
           className="menu-item-image"
+          width="300"
+          height="200"
+          srcSet={`
+            ${image.replace('.webp', '-small.webp')} 300w,
+            ${image.replace('.webp', '-medium.webp')} 600w,
+            ${image} 900w
+          `}
+          sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = '/images/placeholder-beer.jpg';

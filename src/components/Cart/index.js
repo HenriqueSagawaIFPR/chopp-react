@@ -42,7 +42,19 @@ const Cart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem }) =>
               {cartItems.map(item => (
                 <div key={item.id} className="cart-item">
                   <div className="cart-item-image">
-                    <img src={item.image} alt={`${item.name} - Chopp artesanal no carrinho`} loading='lazy' />
+                    <img 
+                      src={item.image} 
+                      alt={`${item.name} - Chopp artesanal no carrinho`} 
+                      loading='lazy'
+                      width="80"
+                      height="80"
+                      srcSet={`
+                        ${item.image.replace('.webp', '-small.webp')} 80w,
+                        ${item.image.replace('.webp', '-medium.webp')} 160w,
+                        ${item.image} 240w
+                      `}
+                      sizes="80px"
+                    />
                   </div>
                   <div className="cart-item-details">
                     <h3 className="cart-item-name">{item.name}</h3>

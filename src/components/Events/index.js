@@ -37,7 +37,19 @@ const Events = () => {
           {events.map(event => (
             <div key={event.id} className="event-card">
               <div className="event-image">
-                <img src={event.image} alt={`${event.title} - ${event.description}`} loading='lazy' />
+                <img 
+                  src={event.image} 
+                  alt={`${event.title} - ${event.description}`} 
+                  loading='lazy'
+                  width="400"
+                  height="300"
+                  srcSet={`
+                    ${event.image.replace('.webp', '-small.webp')} 300w,
+                    ${event.image.replace('.webp', '-medium.webp')} 600w,
+                    ${event.image} 900w
+                  `}
+                  sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
               </div>
               <div className="event-info">
                 <h3 className="event-title">{event.title}</h3>
