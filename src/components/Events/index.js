@@ -37,7 +37,7 @@ const Events = () => {
           {events.map(event => (
             <div key={event.id} className="event-card">
               <div className="event-image">
-                <img src={event.image} alt={event.title} loading='lazy' />
+                <img src={event.image} alt={`${event.title} - ${event.description}`} loading='lazy' />
               </div>
               <div className="event-info">
                 <h3 className="event-title">{event.title}</h3>

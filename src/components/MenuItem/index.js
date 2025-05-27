@@ -21,7 +21,7 @@ const MenuItem = ({ id, name, description, price, image, category, tags, abv, on
       <div className="menu-item-image-container">
         <img 
           src={image} 
-          alt={name} 
+          alt={`${name} - Chopp artesanal ${category}`} 
           className="menu-item-image"
           onError={(e) => {
             e.target.onerror = null;
