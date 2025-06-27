@@ -6,7 +6,7 @@ export const menuItems = [
       price: 12.90,
       category: "Clássicos",
       abv: "4.8%",
-      image: "/images/pilsen.webp",
+      image: "/images/optimized/pilsen.webp",
       tags: ["leve", "refrescante"]
     },
     {
@@ -16,7 +16,7 @@ export const menuItems = [
       price: 18.90,
       category: "Especiais",
       abv: "6.5%",
-      image: "/images/ipa.webp",
+      image: "/images/optimized/IPA.webp",
       tags: ["amargo", "cítrico"]
     },
     {
@@ -26,7 +26,7 @@ export const menuItems = [
       price: 15.90,
       category: "Clássicos",
       abv: "5.2%",
-      image: "/images/weiss.webp",
+      image: "/images/optimized/weiss.webp",
       tags: ["trigo", "frutado"]
     },
     {
@@ -36,7 +36,7 @@ export const menuItems = [
       price: 16.90,
       category: "Especiais",
       abv: "5.8%",
-      image: "/images/stout.webp",
+      image: "/images/optimized/stout.webp",
       tags: ["escura", "encorpada"]
     },
     {
@@ -46,7 +46,7 @@ export const menuItems = [
       price: 15.90,
       category: "Especiais",
       abv: "5.5%",
-      image: "/images/red.webp",
+      image: "/images/optimized/red.webp",
       tags: ["caramelo", "equilibrada"]
     },
     {
@@ -56,7 +56,7 @@ export const menuItems = [
       price: 14.90,
       category: "Clássicos",
       abv: "4.2%",
-      image: "/images/session.webp",
+      image: "/images/optimized/session.webp",
       tags: ["leve", "aromática"]
     }
   ];

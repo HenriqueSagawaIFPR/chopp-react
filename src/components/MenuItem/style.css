@@ -23,17 +23,81 @@
     position: relative;
     height: 14rem;
     overflow: hidden;
+    background-color: #fef3c7;
   }
   
   .menu-item-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+  
+  .menu-item-image.loaded {
+    opacity: 1;
   }
   
   .menu-item:hover .menu-item-image {
     transform: scale(1.05);
+  }
+  
+  /* Placeholder de carregamento */
+  .image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fef3c7 100%);
+    background-size: 200% 200%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+  
+  .placeholder-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #fde68a;
+    border-top: 3px solid #92400e;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Fallback para erro de imagem */
+  .image-error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fef3c7;
+    color: #92400e;
+    font-size: 0.875rem;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .image-error svg {
+    color: #92400e;
+    opacity: 0.6;
+  }
+  
+  /* Animações */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
   
   .menu-item-abv {
@@ -47,6 +111,7 @@
     font-weight: 600;
     border-bottom-left-radius: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
   }
   
   .menu-item-content {

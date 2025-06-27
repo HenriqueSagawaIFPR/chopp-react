@@ -3,6 +3,7 @@ import Header from './components/Header/index';
 import MenuList from './components/MenuList/index';
 import Footer from './components/Footer/index';
 import Navbar from './components/Navbar/index';
+import ImagePreloader from './components/ImagePreloader/index';
 import { menuItems } from './data/menu-item';
 import './styles/global.css';
 import './styles/animations.css';
@@ -19,6 +20,9 @@ const WhatsAppButton = lazy(() => import('./components/WhatsAppButton'));
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+
+  // Extrair URLs das imagens para pré-carregamento
+  const imageUrls = menuItems.map(item => item.image);
 
   const handleAddToCart = (itemId, quantity) => {
     const item = menuItems.find(item => item.id === itemId);
@@ -68,6 +72,9 @@ function App() {
 
   return (
     <div className="app">
+      {/* Preloader de imagens */}
+      <ImagePreloader images={imageUrls} />
+      
       <Navbar cartItemCount={cartItemCount}
         onCartClick={() => setIsCartOpen(true)} />
       <Header />

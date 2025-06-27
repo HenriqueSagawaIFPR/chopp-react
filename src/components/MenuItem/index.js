@@ -1,9 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './style.css';
 
 const MenuItem = ({ id, name, description, price, image, category, tags, abv, onAddToCart }) => {
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const imageRef = useRef(null);
+
+  // Gerar srcSet para imagens responsivas
+  const generateSrcSet = (baseImage) => {
+    const basePath = baseImage.replace('/images/optimized/', '/images/responsive/');
+    const baseName = basePath.replace('.webp', '');
+    
+    return [
+      `${baseName}-small.webp 300w`,
+      `${baseName}-medium.webp 400w`,
+      `${baseName}-large.webp 600w`,
+      `${baseImage} 800w`
+    ].join(', ');
+  };
+
+  // Intersection Observer para lazy loading mais eficiente
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && imageRef.current) {
+            // Definir srcSet e src
+            imageRef.current.srcSet = generateSrcSet(image);
+            imageRef.current.src = image;
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: '50px 0px',
+        threshold: 0.1
+      }
+    );
+
+    if (imageRef.current) {
+      observer.observe(imageRef.current);
+    }
+
+    return () => {
+      if (imageRef.current) {
+        observer.unobserve(imageRef.current);
+      }
+    };
+  }, [image]);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
+    setImageLoaded(true);
+  };
 
   const handleAddToCart = () => {
     setIsAdding(true);
@@ -19,24 +74,38 @@ const MenuItem = ({ id, name, description, price, image, category, tags, abv, on
   return (
     <div className="menu-item-anim menu-item">
       <div className="menu-item-image-container">
+        {/* Placeholder de carregamento */}
+        {!imageLoaded && (
+          <div className="image-placeholder">
+            <div className="placeholder-spinner"></div>
+          </div>
+        )}
+        
         <img 
-          src={image} 
+          ref={imageRef}
           alt={`${name} - Chopp artesanal ${category}`} 
-          className="menu-item-image"
-          width="300"
-          height="200"
-          srcSet={`
-            ${image.replace('.webp', '-small.webp')} 300w,
-            ${image.replace('.webp', '-medium.webp')} 600w,
-            ${image} 900w
-          `}
-          sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = '/images/placeholder-beer.jpg';
-          }}
-          loading='lazy'
+          className={`menu-item-image ${imageLoaded ? 'loaded' : ''}`}
+          width="400"
+          height="300"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          loading="lazy"
+          decoding="async"
         />
+        
+        {/* Fallback para erro de carregamento */}
+        {imageError && (
+          <div className="image-error">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21,15 16,10 5,21"/>
+            </svg>
+            <span>Imagem não disponível</span>
+          </div>
+        )}
+        
         <div className="menu-item-abv">
           {abv}
         </div>
